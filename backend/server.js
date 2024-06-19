@@ -32,9 +32,6 @@ app.use(
 );
 
 app.use("/api/v1", require("./routers/index"));
-// app.get("/api/v1", (req,res)=>{
-//     console.log("working");
-// });
 
 
 

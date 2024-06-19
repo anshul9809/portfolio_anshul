@@ -1,7 +1,8 @@
+const expressAsyncHandler = require("express-async-handler");
 const Message = require("../models/Message");
 const {validateMongoDbId} = require("../utils/validateMongoDbId");
 
-const sendMessage = async (req,res)=>{
+const sendMessage = expressAsyncHandler(async (req,res)=>{
     const {senderName, subject, message} = req.body;
     if(!senderName || !subject || !message){
         throw new Error("Please fill all the required fields");
@@ -17,9 +18,9 @@ const sendMessage = async (req,res)=>{
     }catch(err){
         throw new Error(err?err.message:"Something went wrong");
     }
-}
+});
 
-const getAllMessages = async (req,res)=>{
+const getAllMessages = expressAsyncHandler(async (req,res)=>{
     try{
         const messages = await Message.find({});
         res.status(200).json({
@@ -29,9 +30,9 @@ const getAllMessages = async (req,res)=>{
     }catch(err){
         throw new Error(err?err.message:"Something went wrong");
     }
-}
+});
 
-const deleteMessage = async (req,res)=>{
+const deleteMessage = expressAsyncHandler(async (req,res)=>{
     const {id} = req.params;
     validateMongoDbId(id);
     try{
@@ -44,14 +45,25 @@ const deleteMessage = async (req,res)=>{
     }catch(err){
         throw new Error(err?err.message:"Something went wrong");
     }
-}
+});
 
-const getSingleMessage = async (req,res)=>{
-    
-}
+const getSingleMessage = expressAsyncHandler(async (req,res)=>{
+    const {id} = req.params;
+    validateMongoDbId(id);
+    try{
+        const message = await Message.findById(id);
+        res.status(200).json({
+            success:true,
+            message
+        });
+    }catch(err){
+        throw new Error(err?err.message:"Something went wrong");
+    }
+});
 
 module.exports = {
     sendMessage,
     getAllMessages,
-    deleteMessage
+    deleteMessage,
+    getSingleMessage
 }
