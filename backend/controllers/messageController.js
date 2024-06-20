@@ -37,11 +37,19 @@ const deleteMessage = expressAsyncHandler(async (req,res)=>{
     validateMongoDbId(id);
     try{
         const deletedMessage = await Message.findByIdAndDelete(id);
-        res.status(200).json({
-            success:true,
-            message:"Message Deleted",
-            deletedMessage
-        });
+        if(!deletedMessage){
+            res.status(200).json({
+                success:false,
+                message:"Message Not Found"
+            });
+        }
+        else{
+            res.status(200).json({
+                success:true,
+                message:"Message Deleted",
+                deletedMessage
+            });
+        }
     }catch(err){
         throw new Error(err?err.message:"Something went wrong");
     }
