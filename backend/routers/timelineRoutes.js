@@ -11,6 +11,6 @@ const {
 router.post("/create", authMiddleware, createTimeline);
 router.put("/update/:id", authMiddleware, updateTimeline);
 router.delete("/delete/:id", authMiddleware, deleteTimeline);
-router.get("/", authMiddleware, getAllTimeline);
+router.get("/", getAllTimeline);
 
 module.exports = router;
