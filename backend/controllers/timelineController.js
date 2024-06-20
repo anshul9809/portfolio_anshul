@@ -1,5 +1,6 @@
 const expressAsyncHandler = require("express-async-handler");
 const Timeline = require("../models/Timeline");
+const {validateMongoDbId} = require("../utils/validateMongoDbId");
 
 const createTimeline = expressAsyncHandler(async (req,res)=>{
     const {title, description, from, to} = req.body;
@@ -19,6 +20,7 @@ const createTimeline = expressAsyncHandler(async (req,res)=>{
 });
 const updateTimeline = expressAsyncHandler(async (req,res)=>{
     const {id} = req.params;
+    validateMongoDbId(id);
     const {title, description, from, to} = req.body;
     if(!title || !description || !from || !to){
         throw new Error("Please fill all the required fields");
@@ -40,6 +42,7 @@ const updateTimeline = expressAsyncHandler(async (req,res)=>{
 });
 const deleteTimeline = expressAsyncHandler(async (req,res)=>{
     const {id} = req.params;
+    validateMongoDbId(id);
     try{
         const timeline = await Timeline.findByIdAndDelete(id);
         if(!timeline){

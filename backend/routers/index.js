@@ -4,5 +4,7 @@ const router = express.Router();
 router.use("/user", require("./userRoutes"));
 router.use("/message", require("./messageRoutes"));
 router.use("/timeline", require("./timelineRoutes"));
+router.use("/software", require("./softwareRoutes"));
+router.use("/skill", require("./skillRoutes"));
 
 module.exports = router;
