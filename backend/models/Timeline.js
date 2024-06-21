@@ -17,6 +17,8 @@ const TimelineSchema = mongoose.Schema({
             type: String,
         },
     },
+},{
+    timestamps:true
 });
 
 
