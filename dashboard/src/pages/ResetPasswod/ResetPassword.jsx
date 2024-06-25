@@ -4,6 +4,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { resetPassword } from "../../store/slices/forgotPasswordResetSlice";
 import { getUser } from "../../store/slices/userSlice";
+import { toast } from "react-toastify";
 
 const ResetPassword = ()=>{
     const [password, setPassword] = useState("");
@@ -55,7 +56,7 @@ const ResetPassword = ()=>{
                         onChange={(e) => setConfirmPassword(e.target.value)}
                     />
                 </div>
-                <button className={styles.button} onClick={() => handleResetPassword(email)}>Reset Password</button>
+                <button className={styles.button} onClick={() => handleResetPassword(password, confirmPassword)}>Reset Password</button>
             </div>
         </div>
     );
