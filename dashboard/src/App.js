@@ -9,6 +9,7 @@ import { useDispatch } from 'react-redux';
 import { getUser } from './store/slices/userSlice';
 import ForgotPassword from './pages/ForgotPassword/ForgotPassword';
 import ResetPassword from './pages/ResetPasswod/ResetPassword';
+import Dashboard from './pages/Dashboard/Dashboard';
 
 function App() {
   const dispatch = useDispatch();
@@ -19,7 +20,7 @@ function App() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<div>dashboard</div>}/>
+        <Route path="/" element={<Dashboard />}/>
         <Route path="/login" element={<Login />} />
         <Route path="/password/forgot" element={<ForgotPassword />} />
         <Route path="/password/reset/:token" element={<ResetPassword/>} />
