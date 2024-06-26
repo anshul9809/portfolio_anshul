@@ -11,12 +11,9 @@ const registerUser = expressAsyncHandler(async (req,res)=>{
         throw new Error("Avatar Required");
     }
     const {avatar, resume} = req.files;
-    const originalAvatarName = path.parse(avatar.name).name;
-    const fileExtension = path.parse(avatar.name).ext.slice(1);
     const cloudinaryResponse = await cloudinary.uploader.upload(
         avatar.tempFilePath,
         {folder:"AVATARS",
-            public_id: `${originalAvatarName}.${fileExtension}`,
             resource_type:"raw"
         }
     );
@@ -24,13 +21,9 @@ const registerUser = expressAsyncHandler(async (req,res)=>{
         console.error("cloudinary error: ", cloudinaryResponse.error || "Unknown error in cloudinary");
         throw new Error("Error while uploading avatar");
     }
-    const originalResumeName = path.parse(resume.name).name;
-    const fileResumeExtension = path.parse(resume.name).ext.slice(1);
     const cloudinaryResponseForResume = await cloudinary.uploader.upload(
         resume.tempFilePath,
-        {folder:"RESUMES",
-            public_id: `${originalResumeName}.${fileResumeExtension}`,
-        resource_type:"raw"}
+        {folder:"RESUMES"}
     );
     if(!cloudinaryResponseForResume || cloudinaryResponseForResume.error){
         console.error("cloudinary error: ", cloudinaryResponseForResume.error || "Unknown error in cloudinary");
@@ -125,18 +118,13 @@ const updateProfile = expressAsyncHandler(async (req,res)=>{
         linkedInURL: req.body.linkedInURL,
     }
     if(req.files && req.files.avatar){
-        const avatar = req.files.avatar
+        const avatar = req.files.avatar;
         const user = await User.findById(req.user._id);
         const profileImageId = user.avatar.public_id;
         await cloudinary.uploader.destroy(profileImageId);
-        const originalAvatarName = path.parse(avatar.name).name;
-        const fileExtension = path.parse(avatar.name).ext.slice(1);
         const cloudinaryResponse = await cloudinary.uploader.upload(
             avatar.tempFilePath,
-            {folder:"AVATARS",
-                public_id: `${originalAvatarName}.${fileExtension}`,
-                resource_type:"raw"
-            }
+            {folder:"AVATARS",}
         );
         if(!cloudinaryResponse || cloudinaryResponse.error){
             console.error("cloudinary error: ", cloudinaryResponse.error || "Unknown error in cloudinary");
@@ -154,13 +142,10 @@ const updateProfile = expressAsyncHandler(async (req,res)=>{
         if (resumeFileId) {
           await cloudinary.uploader.destroy(resumeFileId);
         }
-        const originalResumeName = path.parse(resume.name).name;
-        const fileResumeExtension = path.parse(resume.name).ext.slice(1);
         const cloudinaryResponseForResume = await cloudinary.uploader.upload(
             resume.tempFilePath,
             {folder:"RESUMES",
-                public_id: `${originalResumeName}.${fileResumeExtension}`,
-            resource_type:"raw"}
+            }
         );
         if(!cloudinaryResponseForResume || cloudinaryResponseForResume.error){
             console.error("cloudinary error: ", cloudinaryResponseForResume.error || "Unknown error in cloudinary");

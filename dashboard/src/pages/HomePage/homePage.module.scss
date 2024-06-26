@@ -1,8 +1,7 @@
 @import "../../theme.scss";
 
-.dashboardMain {
+.homePage {
   display: flex;
-  justify-content: center;
   height: 100vh;
   width: 100%;
   background: $backgroundGradient;
@@ -186,4 +185,27 @@
       }
     }
   }
+  .homePageMain{
+    height: 100vh;
+    padding: $paddingMedium;
+    padding-left: 5rem;
+    width: 100%;
+    height: 100vh;
+    .homePageHeader{
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      img{
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        border: 2px solid $mainColor;
+      }
+      h1{
+        font-size: 1.2em;
+        text-shadow: 1px 1px 10px green;
+      }
+    }
+  }
+
 }

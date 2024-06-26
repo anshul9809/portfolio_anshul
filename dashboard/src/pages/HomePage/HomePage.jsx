@@ -3,11 +3,18 @@ import { useDispatch, useSelector } from "react-redux";
 import { clearAllUserErrors, logout } from "../../store/slices/userSlice";
 import { toast } from "react-toastify";
 import { Link, useNavigate } from "react-router-dom";
-import styles from "./dashboard.module.scss";
+import styles from "./homePage.module.scss";
 import { FaHome, FaFolderPlus, FaPencilRuler, FaThLarge, FaHistory, FaComments, FaUser, FaSignOutAlt, FaBars, FaTimes } from 'react-icons/fa';
+import Dashboard from "../sub-components/Dashboard/Dashboard";
+import AddProject from "../sub-components/AddProject/AddProject";
+import Account from "../sub-components/Account/Account";
+import AddSkill from "../sub-components/AddSkill/AddSkill";
+import AddSoftwareApplications from "../sub-components/AddSoftware/AddSoftware";
+import AddTimeline from "../sub-components/AddTimeline/AddTimeline";
+import Message from "../sub-components/Message/Message";
 
 
-const Dashboard = ()=>{
+const HomePage = ()=>{
     const [active, setActive] = useState("");
     const {isAuthenticated, user, error} = useSelector((state)=>state.user);
     const dispatch = useDispatch();
@@ -39,7 +46,7 @@ const Dashboard = ()=>{
 
     return (
         <>
-            <div className={styles.dashboardMain}>
+            <div className={styles.homePage}>
                 <div className={styles.sidebarContainer}>
                     <div className={styles.sidebarToggle} onClick={handleSidebarToggle}>
                         {isSidebarOpen? <FaTimes /> : <FaBars />}
@@ -91,10 +98,47 @@ const Dashboard = ()=>{
                         </nav>
                     </aside>
                 </div>
+                <main className={styles.homePageMain}>
+                    <header className={styles.homePageHeader}>
+                        <img src={user && user.avatar && user.avatar.url}
+                            alt="avatar"
+                            className={styles.userAvatar}
+                        />
+                        <h1>Welcome back, {user.fullName}</h1>
+                    </header>
+                    {(() => {
+                        switch (active) {
+                        case "Dashboard":
+                            return <Dashboard />;
+                            break;
+                        case "Add Project":
+                            return < AddProject />;
+                            break;
+                        case "Add Skill":
+                            return <AddSkill />;
+                            break;
+                        case "Add Uses":
+                            return <AddSoftwareApplications />;
+                            break;
+                        case "Add Timeline":
+                            return < AddTimeline />;
+                            break;
+                        case "Messages":
+                            return <Message />;
+                            break;
+                        case "Account":
+                            return <Account />;
+                            break;
+                        default:
+                            return <Dashboard />;
+                            break;
+                        }
+                    })()}
+                </main>
             </div>
         </>
     );
 
 }
 
-export default Dashboard;
+export default HomePage;
