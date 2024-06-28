@@ -19,7 +19,6 @@ function Login() {
 
   const handleLogin = ()=>{
     dispatch(login(email, password));
-    toast.success("Logged In");
   }
 
   useEffect(()=>{
