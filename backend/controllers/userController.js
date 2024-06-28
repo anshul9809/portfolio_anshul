@@ -206,7 +206,7 @@ const forgotPassword = expressAsyncHandler(async (req,res)=>{
     }
     const resetToken = user.getPasswordResetToken();
     await user.save({validateBeforeSave:false});
-    const resetPasswordURL = `${process.env.DASHBOARD_URL}/password/reset/${resetToken}`;
+    const resetPasswordURL = `${process.env.DASHBOARD_URL}/forgot-password/reset/${resetToken}`;
     const message = `Your Reset Password Token is:- \n\n ${resetPasswordURL}  \n\n If You've not requested this email then, please ignore it.`;
 
     try{
