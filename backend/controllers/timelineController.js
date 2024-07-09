@@ -3,12 +3,12 @@ const Timeline = require("../models/Timeline");
 const {validateMongoDbId} = require("../utils/validateMongoDbId");
 
 const createTimeline = expressAsyncHandler(async (req,res)=>{
-    const {title, description, from, to} = req.body;
-    if(!title || !description || !from || !to){
+    const {title, description, from, to, companyName} = req.body;
+    if(!title || !description || !from || !to || !companyName){
         throw new Error("Please fill all the required fields");
     }
     try{
-        const newTimeline = await Timeline.create({title, description, timeline:{from, to}});
+        const newTimeline = await Timeline.create({companyName, title, description, timeline:{from, to}});
         res.status(200).json({
             success:true,
             message: "Timeline created successfully",
@@ -21,12 +21,12 @@ const createTimeline = expressAsyncHandler(async (req,res)=>{
 const updateTimeline = expressAsyncHandler(async (req,res)=>{
     const {id} = req.params;
     validateMongoDbId(id);
-    const {title, description, from, to} = req.body;
-    if(!title || !description || !from || !to){
+    const {title, description, from, to, companyName} = req.body;
+    if(!title || !description || !from || !to || !companyName){
         throw new Error("Please fill all the required fields");
     }
     try{
-        const timeline = await Timeline.findByIdAndUpdate(id, {title, description, timeline:{from, to}},
+        const timeline = await Timeline.findByIdAndUpdate(id, {companyName, title, description, timeline:{from, to}},
             {new: true, runValidators: true});
         if(!timeline){
             throw new Error("Timeline not found");

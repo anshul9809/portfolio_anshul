@@ -1,0 +1,33 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+
+@import "./themes.scss";
+
+body{
+    background-color: $backgroundColor;
+    *{
+        box-sizing: border-box;
+        font-family: 'Roboto', sans-serif;
+        margin: 0;
+        padding: 0;
+        font-size: 16px;
+        color: $textColor;
+        text-decoration: none;
+        list-style: none;
+        outline: none;
+        border: none;
+        scroll-behavior: smooth;
+        user-select: none;
+        font-weight: 400;
+    }
+}
+
+::-webkit-scrollbar {
+    width: 5px;
+}
+::-webkit-scrollbar-track {
+    background: $buttonGradient;
+}
+::-webkit-scrollbar-thumb {
+    background: linear-gradient(#a78cf1, #ff22e6);
+    border-radius: 7px;
+}

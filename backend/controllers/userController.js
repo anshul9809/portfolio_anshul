@@ -10,24 +10,15 @@ const registerUser = expressAsyncHandler(async (req,res)=>{
     if(!req.files || Object.keys(req.files).length === 0){
         throw new Error("Avatar Required");
     }
-    const {avatar, resume} = req.files;
+    const {avatar} = req.files;
+    console.log("avatar is ", avatar)
     const cloudinaryResponse = await cloudinary.uploader.upload(
         avatar.tempFilePath,
-        {folder:"AVATARS",
-            resource_type:"raw"
-        }
+        {folder:"AVATARS",        }
     );
     if(!cloudinaryResponse || cloudinaryResponse.error){
         console.error("cloudinary error: ", cloudinaryResponse.error || "Unknown error in cloudinary");
         throw new Error("Error while uploading avatar");
-    }
-    const cloudinaryResponseForResume = await cloudinary.uploader.upload(
-        resume.tempFilePath,
-        {folder:"RESUMES"}
-    );
-    if(!cloudinaryResponseForResume || cloudinaryResponseForResume.error){
-        console.error("cloudinary error: ", cloudinaryResponseForResume.error || "Unknown error in cloudinary");
-        throw new Error("Error while uploading Resume");
     }
     
     const {
@@ -41,7 +32,8 @@ const registerUser = expressAsyncHandler(async (req,res)=>{
         instagramURL,
         twitterURL,
         linkedInURL,
-        facebookURL
+        facebookURL,
+        resume
     } = req.body;
     const user = await User.create({
         fullName,
@@ -55,14 +47,11 @@ const registerUser = expressAsyncHandler(async (req,res)=>{
         twitterURL,
         linkedInURL,
         facebookURL,
+        resume,
         avatar: {
             public_id: cloudinaryResponse.public_id, // Set your cloudinary public_id here
             url: cloudinaryResponse.secure_url, // Set your cloudinary secure_url here
-          },
-          resume: {
-            public_id: cloudinaryResponseForResume.public_id, // Set your cloudinary public_id here
-            url: cloudinaryResponseForResume.secure_url, // Set your cloudinary secure_url here
-          },
+        },
     });
     generateToken(user, "Registered!", 201, res);
 });
@@ -116,6 +105,7 @@ const updateProfile = expressAsyncHandler(async (req,res)=>{
         facebookURL: req.body.facebookURL,
         twitterURL: req.body.twitterURL,
         linkedInURL: req.body.linkedInURL,
+        resume:req.body.resume
     }
     if(req.files && req.files.avatar){
         const avatar = req.files.avatar;
@@ -133,27 +123,6 @@ const updateProfile = expressAsyncHandler(async (req,res)=>{
         newUserData.avatar = {
             public_id: cloudinaryResponse.public_id,
             url: cloudinaryResponse.secure_url,
-        };
-    }
-    if (req.files && req.files.resume) {
-        const resume = req.files.resume;
-        const user = await User.findById(req.user.id);
-        const resumeFileId = user.resume.public_id;
-        if (resumeFileId) {
-          await cloudinary.uploader.destroy(resumeFileId);
-        }
-        const cloudinaryResponseForResume = await cloudinary.uploader.upload(
-            resume.tempFilePath,
-            {folder:"RESUMES",
-            }
-        );
-        if(!cloudinaryResponseForResume || cloudinaryResponseForResume.error){
-            console.error("cloudinary error: ", cloudinaryResponseForResume.error || "Unknown error in cloudinary");
-            throw new Error("Error while uploading Resume");
-        }
-        newUserData.resume = {
-            public_id: cloudinaryResponseForResume.public_id,
-            url: cloudinaryResponseForResume.secure_url,
         };
     }
     const user = await User.findByIdAndUpdate(req.user._id, newUserData, {
