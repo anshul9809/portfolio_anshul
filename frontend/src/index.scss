@@ -12,7 +12,33 @@ html{
     font-family: 'Poppins', sans-serif;
     scroll-behavior: smooth;
     color: $textColor;
-    background: $backgroundGradient;
+    text-decoration: none;
+    list-style: none;
+    body{
+        background: $backgroundGradient;
+        overflow-x: hidden;
+    }
+    a{
+        color: $textColor;
+    }
+    a:hover{
+        color: $linkHover;
+    }
+    button{
+        cursor: pointer;
+        background: $buttonGradient;
+        color: $textColor;
+        border: none;
+        border-radius: $borderRadiusLow;
+        padding: $paddingLow $paddingHigh ;
+        box-shadow: $shadow;
+        &:hover{
+            background: $buttonHover;
+        }
+        &:active{
+            background: $buttonHover;
+        }
+    }
 
     &::selection{
         color: $textColor;
@@ -41,7 +67,30 @@ html{
     }
 
 }
-section{
+section {
     height: 100vh;
+    width: 100vw;
     scroll-snap-align: center;
+    overflow: hidden;
+}
+  
+@mixin small{
+    @media (max-width:568px) {
+        @content;
+    }
+}
+@mixin mobile {
+    @media (max-width: 738px) {
+      @content;
+    }
+}
+@mixin tablet {
+    @media (max-width: 1024px) {
+      @content;
+    }
+}
+@mixin desktop {
+    @media (max-width: 1366px) {
+      @content;
+    }
 }
