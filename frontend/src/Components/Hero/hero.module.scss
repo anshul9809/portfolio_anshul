@@ -1,0 +1,39 @@
+@import "../../themes.scss";
+.hero{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    &__left{
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+        width: 50%;
+        .hero__text{
+            &__greetings{
+                font-size: 3rem
+            }
+            &__heading{
+                font-size: 5rem;
+                font-weight: 700;
+                color: $textColor;
+            }
+            &__subheading{
+                font-size: 2rem;
+                font-weight: 500;
+                color: $textColor;
+            }
+        }
+    }
+    &__right{
+        width: 50%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        img{
+            width: 80%;
+            border-radius: 20px;
+        }
+
+    }
+}
