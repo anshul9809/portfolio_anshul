@@ -1,0 +1,83 @@
+@import "../../index.scss";
+@import "../../themes.scss";
+
+.timeline{
+    width: 100%;
+    padding: 20px;
+    &__heading{
+        text-align: center;
+        font-size: 3rem;
+        @include mobile{
+            font-size: 1.5rem;
+        }
+    }
+    &__wrapper{
+        max-width: 1366px;
+        margin: auto;
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+        gap: 20px;
+        padding-top: 50px;
+        @include mobile{
+            gap: 10px;
+        }
+        .timeline__item{
+            font-size: 1.1rem;
+            width: 70%;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            padding-bottom: $paddingLow;
+            border-bottom: 2px solid $slateGray;
+            .simple__icons{
+                width: 30px;
+            }
+            .role{
+                font-size: 1.5rem;
+                background: -webkit-linear-gradient(#492ca0, #8963c2, #cbbae4);
+                -webkit-background-clip: text;
+                -webkit-text-fill-color: transparent;
+            }
+            .name__and__date{
+                font-size: 1rem;
+                display: flex;
+                justify-content: space-between;
+            }
+            .description{
+                font-size: 1rem;
+                display: flex;
+                flex-direction: column;
+                gap: 10px;
+                li{
+                    display: flex;
+                    gap: 10px;
+                    .list__icons{
+                        width: 10px;
+                        height: 10px;
+                        box-sizing: content-box;
+                        padding: 7px 0 0 5px;
+                        margin:0;
+                    }
+                    p{
+                        width: 100%;
+                        margin: 0;
+                        padding: 0;
+                    }
+                }
+            }
+            h4{
+                font-size: 1.3rem;
+            }
+
+            @include mobile{
+                gap: 10px;
+                width: 80%;
+                @include small{
+                    width: 100%;
+                }
+            }
+        }
+
+    }
+}

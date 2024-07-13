@@ -1,0 +1,62 @@
+@import "../../themes.scss";
+@import "../../index.scss";
+
+.projects{
+    padding: 20px;
+    &__heading{
+        text-align: center;
+        font-size: 3rem;
+        @include mobile{
+            font-size: 1.5rem;
+        }
+    }
+    &__wrapper{
+        width: 80%;
+        max-width: 1366px;
+        margin: auto;
+        padding-top: 50px;
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        gap: 20px;
+        @include mobile{
+            grid-template-columns: repeat(1, 1fr);
+            gap: 10px;
+        }
+        .projects__item{
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            align-items: center;
+            gap: 30px;
+            text-align: center;
+            padding: $paddingMedium;
+            -webkit-box-shadow: -4px 3px 18px 2px rgba(128,128,128,1);
+            -moz-box-shadow: -4px 3px 18px 2px rgba(128,128,128,1);
+            box-shadow: -4px 3px 18px 2px rgba(128,128,128,1);
+            border-radius: $borderRadiusHigh;
+            p{
+                color: $textColor;
+                font-size: 1em;
+                @include mobile{
+                    font-size: 0.6em;
+                }
+            }
+            h2{
+                font-size: 1.4em;
+            }
+            img{
+                border-radius: $borderRadiusHigh;
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+            }
+            @include mobile{
+                padding: 10px;
+            }
+
+        }
+    }
+}

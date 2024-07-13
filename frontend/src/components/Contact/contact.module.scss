@@ -1,0 +1,101 @@
+@import "../../themes.scss";
+@import "../../index.scss";
+.contact {
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    
+    &__heading {
+      font-size: 2rem;
+      margin-bottom: 2rem;
+      text-align: center;
+    }
+  
+    &__wrapper {
+      display: flex;
+      flex-direction: column;
+      width: 100%;
+  
+      @media (min-width: 768px) {
+        flex-direction: row;
+        justify-content: space-between;
+      }
+    }
+  
+    &__info {
+      flex: 1;
+      padding: 1rem;
+  
+      &__wrapper {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+      }
+  
+      &__item {
+        border-radius: 5px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        &__image{
+            border-radius: $borderRadiusHigh;
+        }
+        &__heading {
+          font-weight: bold;
+          margin-bottom: 0.5rem;
+        }
+  
+        &__data {
+          font-size: 0.9rem;
+          color: #555;
+        }
+      }
+    }
+  
+    &__form {
+      flex: 1;
+      box-sizing: border-box;
+      padding: 10px 30px;
+      background-color: $darkgray;
+      border-radius: $borderRadiusHigh;
+      box-shadow: inset 4px 4px 68px #222222,
+                  inset -4px -4px 68px #252525;
+  
+      form {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+        h4{
+            text-align: center;
+            font-size: 1.5rem;
+            color: $textColor
+        }
+      }
+  
+      &__group {
+        display: flex;
+        flex-direction: column;
+  
+        label {
+          font-weight: bold;
+          margin-bottom: 0.5rem;
+        }
+  
+        .contact__input,
+        .contact__textarea {
+          padding: 0.5rem;
+          border: 1px solid #ccc;
+          border-radius: 5px;
+          box-shadow: 1px 1px 5px #090909;
+        }
+  
+        .contact__textarea {
+          resize: vertical;
+        }
+      }
+  
+      button {
+        align-self: flex-start;
+      }
+    }
+}
+  

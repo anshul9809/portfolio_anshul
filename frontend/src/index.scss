@@ -29,11 +29,15 @@ html{
         background: $buttonGradient;
         color: $textColor;
         border: none;
+        font-size: 1rem;
         border-radius: $borderRadiusLow;
         padding: $paddingLow $paddingHigh ;
-        box-shadow: $shadow;
+        box-shadow: $buttonShadow;
+        filter: brightness(1.2);
+        letter-spacing: 1px;
+        text-shadow: 0px 0px 2px #030303;
         &:hover{
-            background: $buttonHover;
+            background-position: $buttonHover;
         }
         &:active{
             background: $buttonHover;
@@ -67,11 +71,11 @@ html{
     }
 
 }
-section {
-    height: 100vh;
+.section {
+    min-height: 100vh;
     width: 100vw;
     scroll-snap-align: center;
-    overflow: hidden;
+    overflow-x: hidden;
 }
   
 @mixin small{

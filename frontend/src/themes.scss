@@ -1,10 +1,12 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
 $backgroundColor: #000000;
 $darkgray: #030303;
+$slateGray: #c9c9c9;
 $backgroundGradient: linear-gradient(45deg, $darkgray, $backgroundColor);
 $textColor: #fefdfd;
 $mainColor: #5f43b2;
-$buttonGradient: linear-gradient(45deg, #492ca0, #6f50aa, #8963c2);
+// $buttonGradient: linear-gradient(45deg, #492ca0, #6f50aa, #8963c2);
+$buttonGradient: linear-gradient(145deg, #6a3093 , #a044ff , #6a3093 );
 $buttonHover: #6216a0;
 $buttonShadow: 2px 2px 20px rgba(157, 78, 221, 0.5);
 
@@ -13,7 +15,7 @@ $borderRadiusHigh: 20px;
 
 $linkHover:#cecece;
 
-$shadow: 3px 3px 10px gray;
+$shadow: 3px 3px 10px #808080;
 
 $paddingLow: 8px;
 $paddingMedium: 16px;

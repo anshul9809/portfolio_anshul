@@ -1,0 +1,34 @@
+@import "../../themes.scss";
+@import "../../index.scss";
+
+.footer{
+    padding: 20px;
+    background-color: $darkgray;
+    border-top: 2px solid black;
+    text-align: center;
+    font-size: 1rem;
+    @include mobile {
+        font-size: 1rem;
+    }
+    @include small {
+        font-size: 0.8rem;
+    }
+    // it will have all my liks to social media and copyright line
+    .footer__wrapper{
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        .footer__social__links{
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            .footer__social__link{
+                color: $textColor;
+                img{
+                    width: 30px;
+                    height: 30px;
+                }
+            }
+        }
+    }
+}

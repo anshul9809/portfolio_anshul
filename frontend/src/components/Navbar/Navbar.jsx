@@ -13,9 +13,11 @@ const Navbar = ()=>{
                     animate={{ opacity: 1, scale: 1 }}
                     transition={{ duration: 0.5 }}
                     >
-                    Anshul Kumar
+                    <i>AK</i>
                 </motion.span>
                     <div className={styles.navbar__social__links}>
+                        <a href="" target="_blank" rel="noreferrer"><img src="./phone.png" alt="phone" /></a>              
+                        <a href="" target="_blank" rel="noreferrer"><img src="./email.png" alt="mail" /></a>              
                         <a href="" target="_blank" rel="noreferrer"><img src="./github.png" alt="github" /></a>
                         <a href="" target="_blank" rel="noreferrer"><img src="./linkedin.png" alt="linkedin" /></a>
                         <a href="" target="_blank" rel="noreferrer"><img src="./instagram.png" alt="instagram" /></a>

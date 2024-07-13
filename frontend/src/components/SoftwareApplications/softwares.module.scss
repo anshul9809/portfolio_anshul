@@ -1,0 +1,48 @@
+@import "../../themes.scss";
+@import "../../index.scss";
+
+.softwares {
+    padding: 20px;
+
+    &__heading {
+        text-align: center;
+        font-size: 3rem;
+        @include mobile {
+            font-size: 2rem;
+        }
+    }
+    &__wrapper{
+        max-width: 1366px;
+        width: 80%;
+        margin: auto;
+        display: grid;
+        grid-template-columns: repeat(6, 1fr);
+        padding-top: 50px;
+        flex-wrap: wrap;
+        text-align: center;
+        @include tablet{
+            width: 90%;
+            grid-template-columns: repeat(4, 1fr);
+        }
+        @include mobile{
+            width: 90%;
+            grid-template-columns: repeat(4, 2fr);
+        }
+        @include small{
+            grid-template-columns: repeat(3, 1fr);
+        }
+        .softwares__item{
+            height: 200px;
+            padding: $paddingMedium;
+            border-radius: $borderRadiusHigh;
+            img{
+                width: 60px;
+                height: 60px;
+                filter: drop-shadow(-2px -2px white);
+            }
+            p{
+                color: $textColor;
+            }
+        }
+    }
+}
