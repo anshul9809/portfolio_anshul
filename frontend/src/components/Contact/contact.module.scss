@@ -54,13 +54,16 @@
     &__form {
       flex: 1;
       box-sizing: border-box;
-      padding: 10px 30px;
+      padding: 10px 40px;
       background-color: $darkgray;
       border-radius: $borderRadiusHigh;
       box-shadow: inset 4px 4px 68px #222222,
-                  inset -4px -4px 68px #252525;
-  
+      inset -4px -4px 68px #252525;
+      
       form {
+        color: black;
+        width: 80%;
+        margin: auto;
         display: flex;
         flex-direction: column;
         gap: 1rem;
@@ -86,6 +89,8 @@
           border: 1px solid #ccc;
           border-radius: 5px;
           box-shadow: 1px 1px 5px #090909;
+          color: $mainColor;
+          font-weight: 600;
         }
   
         .contact__textarea {

@@ -3,15 +3,15 @@ const Message = require("../models/Message");
 const {validateMongoDbId} = require("../utils/validateMongoDbId");
 
 const sendMessage = expressAsyncHandler(async (req,res)=>{
-    const {senderName, subject, message} = req.body;
-    if(!senderName || !subject || !message){
+    const {senderName, subject, message, email} = req.body;
+    if(!senderName || !subject || !message || !email){
         throw new Error("Please fill all the required fields");
     }
     try{
-        const data = await Message.create({senderName, subject, message});
+        const data = await Message.create({email, senderName, subject, message});
         res.json({
             success:true,
-            message:"Message Sent",
+            message:"I will get  back to you",
             data
         });
 

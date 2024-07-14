@@ -1,6 +1,47 @@
 import styles from "./contact.module.scss";
+import axios from "axios";
+import {useEffect, useState} from "react";
+import {toast} from "react-toastify";
+
 
 const Contact = () => {
+    const [user, setUser] = useState("");
+    const [senderName, setSenderName] = useState("");
+    const [email, setEmail] = useState("");
+    const [subject, setSubject] = useState("");
+    const [message, setMessage] = useState("");
+    const [loading, setLoading] = useState(false);
+
+    useEffect(()=> async ()=>{
+        const {data} = await axios.get(`${import.meta.env.VITE_BACKEND_URL}/user/portfolio`);
+        setUser(data.user);
+    }, []);
+
+    const handleMessage = async (e)=>{
+        e.preventDefault();
+        setLoading(true);
+        await axios.post(`${import.meta.env.VITE_BACKEND_URL}message`, 
+            { senderName, email, subject, message },
+            {
+            withCredentials: true,
+            headers: { "Content-Type": "application/json" },
+            }
+        ).then((res) => {
+            setSenderName("");
+            setSubject("");
+            setMessage("");
+            setEmail("");
+            toast.success(res.data.message);
+            setLoading(false);
+        })
+        .catch((error) => {
+            toast.error(error.response.data.message);
+            setLoading(false);
+        });
+    }
+
+
+
     return (
         <>
         <div className={styles.contact}>
@@ -19,7 +60,7 @@ const Contact = () => {
                                 Email
                             </div>
                             <div className={styles.contact__info__item__data}>
-                                <a href="mailto=`demo`" >this is demo</a>
+                                <a href={`mailto=${user?.email}` }>{user.email}</a>
                             </div>
                         </div>
                         <div className={styles.contact__info__item}>
@@ -27,7 +68,7 @@ const Contact = () => {
                                 Phone
                             </div>
                             <div className={styles.contact__info__item__data}>
-                                <a href="tel:`+89798797">6468987979</a>
+                                <a href={`tel:${user.phone}`}>{user?.phone}</a>
                             </div>
                         </div>
                         <div className={styles.contact__info__item}>
@@ -36,21 +77,43 @@ const Contact = () => {
                     </div>
                 </div>
                 <div className={styles.contact__form}>
-                    <form>
+                    <form onSubmit={handleMessage}>
                         <h4>Send me a Message</h4>
                         <div className={styles.contact__form__group}>
                             <label htmlFor="name">Name</label>
-                            <input className={styles.contact__input} type="text" id="name" />
+                            <input className={styles.contact__input} 
+                                type="text"
+                                value={senderName}
+                                onChange={(e) => setSenderName(e.target.value)}
+                                placeholder="Your Name"
+                            />
                         </div>
                         <div className={styles.contact__form__group}>
                             <label htmlFor="email">Email</label>
-                            <input className={styles.contact__input} type="email" id="email" />
+                            <input className={styles.contact__input} type="email"
+                                value={email}
+                                onChange={(e) => setEmail(e.target.value)}
+                                placeholder="Your Email"
+                            />
+                        </div>
+                        <div className={styles.contact__form__group}>
+                            <label htmlFor="subject">Subject</label>
+                            <input className={styles.contact__input}
+                                type="text"
+                                value={subject}
+                                onChange={(e) => setSubject(e.target.value)}
+                                placeholder="Subject"
+                            />
                         </div>
                         <div className={styles.contact__form__group}>
                             <label htmlFor="message">Message</label>
-                            <textarea className={styles.contact__textarea} id="message" />
+                            <textarea className={styles.contact__textarea}
+                                value={message}
+                                onChange={(e) => setMessage(e.target.value)}
+                                placeholder="Your Message"
+                            />
                         </div>
-                        <button type="submit">Submit</button>
+                        <button className={styles.contact__form__btn} type="submit" disabled={loading ? true : false} >Send Message</button>
                     </form>
                 </div>
             </div>

@@ -1,9 +1,23 @@
 import styles from "./skills.module.scss";
 import { motion, useInView } from "framer-motion";
-import { useRef } from "react";
-import {FaCalendarAlt} from "react-icons/fa"
+import { useRef, useState, useEffect } from "react";
+import axios from "axios";
+
+
 
 const Skills = () => {
+    const [skills, setSkills] = useState([]);
+    useEffect(() => {
+        const getMySkills = async () => {
+            const { data } = await axios.get(
+                `${import.meta.env.VITE_BACKEND_URL}skill`,
+                { withCredentials: true }
+            );
+            setSkills(data.skills);
+        };
+        getMySkills();
+        console.log("skills are ", skills);
+    }, []);
     const ref = useRef();
 
     const isInView = useInView(ref);
@@ -13,33 +27,40 @@ const Skills = () => {
             <div className={styles.skills}>
                 <h1 className={styles.skills__heading}>Skills</h1>
                 <motion.div className={styles.skills__wrapper} ref={ref}>
-                    <motion.div
-                        className={styles.skills__item}
-                        ref={ref}
-                        animate={isInView ? "animate" : "initial"}
-                        variants={{
-                            initial: {
-                                opacity: 0,
-                                y: 100,
-                            },
-                            animate: {
-                                opacity: 1,
-                                y: 0,
-                                transition: {
-                                    duration: 1,
-                                    staggerChildren: 0.1,
-                                },
-                            },
-                        }}
-                    >
-                        {/* getting multiple skill with the image and name of the skill with proficicney */}
+                    {skills && skills.map((element, index)=>{
+                        return (
+                            <motion.div key={index}
+                                className={styles.skills__item}
+                                ref={ref}
+                                animate={isInView ? "animate" : "initial"}
+                                variants={{
+                                    initial: {
+                                        opacity: 0,
+                                        y: 100,
+                                    },
+                                    animate: {
+                                        opacity: 1,
+                                        y: 0,
+                                        transition: {
+                                            duration: 1,
+                                            staggerChildren: 0.1,
+                                        },
+                                    },
+                                }}
+                            >
+                                {/* getting multiple skill with the image and name of the skill with proficicney */}
                             <img
                                 className={styles.skills__image}
-                                src="./instagram.png"
+                                src={element.svg.url}
                                 alt="html"
                             />
-                            <h2 className={styles.skills__title}>HTML</h2>
-                    </motion.div>
+                            <h2 className={styles.skills__title}>{element.title}</h2>
+                        </motion.div>
+                        )
+
+                    })
+                }
+                    
                 </motion.div>
                         
             </div>

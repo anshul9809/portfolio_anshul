@@ -10,18 +10,18 @@ const ToggleButton = ({ setOpen }) => {
           stroke="white"
           strokeLinecap="round"
           variants={{
-            closed: { d: "M 2 2.5 L 20 2.5" },
-            open: { d: "M 3 16.5 L 17 2.5" },
+            closed: { d: "m 2 2.5 L 20 2.5" },
+            open: { d: "m 3 16.5 L 17 2.5" },
           }}
         />
         <motion.path
           strokeWidth="3"
           stroke="white"
           strokeLinecap="round"
-          d="M 2 9.423 L 20 9.423"
+          d="m 2 9.423 L 20 9.423"
           variants={{
-            closed: { opacity: 1 },
             open: { opacity: 0 },
+            closed: { opacity: 1 },
           }}
         />
         <motion.path
