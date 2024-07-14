@@ -28,7 +28,7 @@ const Timeline = () => {
     const {timeline} = useSelector(state=>state.timeline);
     return (
         <div className={styles.timeline}>
-            <h1 className={styles.timeline__heading}>Timeline</h1>
+            <h1 className={styles.timeline__heading}>Experience</h1>
 
             <motion.div className={styles.timeline__wrapper} ref={ref}>
                 {timeline && timeline.map((element, index)=>{

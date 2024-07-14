@@ -3,9 +3,10 @@ import Hero from '../../components/Hero/Hero';
 import Timeline from '../../components/Timeline/Timeline';
 import Projects from '../../components/Projects/Projects';
 import Skills from "../../components/Skills/Skills";
-import Softwares from "../../components/SoftwareApplications/Softwares";
+// import Softwares from "../../components/SoftwareApplications/Softwares";
 import Contact from "../../components/Contact/Contact";
 import Footer from "../../components/Footer/Footer";
+import About from "../../components/About/About";
 
 function Home() {
 
@@ -15,6 +16,7 @@ function Home() {
           <Navbar />
           <Hero />
         </section>
+        <section className="section"><About /></section>
         <section className='section'><Timeline /></section>
         <section className='section'><Projects /></section>
         <section className='section'><Skills /></section>
