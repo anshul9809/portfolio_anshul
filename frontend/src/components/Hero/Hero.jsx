@@ -1,5 +1,6 @@
 import {motion} from "framer-motion";
 import styles from "./hero.module.scss";
+import { useSelector } from "react-redux";
 const Hero = ()=>{
 
     const textVariants = {
@@ -37,12 +38,13 @@ const Hero = ()=>{
           },
         },
       };
+    const {user} = useSelector(state=>state.user);
     return (
         <>
             <div className={styles.hero}>
                 <div className={styles.hero__wrapper}>
                     <motion.div className={styles.text__container}>
-                        <motion.h2 variants={textVariants}>Anshul Kumar</motion.h2>
+                        <motion.h2 variants={textVariants}>{user.fullName}</motion.h2>
                         <motion.h1 variants={textVariants}>
                             Web Developer
                         </motion.h1>
@@ -58,7 +60,7 @@ const Hero = ()=>{
                     </motion.div>
 
                     <div className={styles.image__container}>
-                        <img src="./ME2.jpg" alt="" />
+                        <img src={user?.avatar?.url || "./ME2.jpg"} alt="" loading="lazy" />
                     </div>
 
                 </div>

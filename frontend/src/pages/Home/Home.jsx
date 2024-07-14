@@ -18,7 +18,7 @@ function Home() {
         <section className='section'><Timeline /></section>
         <section className='section'><Projects /></section>
         <section className='section'><Skills /></section>
-        <section className='section'><Softwares /></section>
+        {/* <section className='section'><Softwares /></section> */}
         <section className="section">
           <Contact />
           <Footer />  

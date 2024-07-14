@@ -3,7 +3,9 @@
 
 .skills {
     padding: 30px;
-
+    @include small{
+        padding: 10px;
+    }
     &__heading {
         text-align: center;
         font-size: 3rem;
@@ -17,19 +19,22 @@
         margin: auto;
         display: grid;
         grid-template-columns: repeat(6, 1fr);
+        padding: 0 20px;
         padding-top: 40px;
-        flex-wrap: wrap;
         text-align: center;
         @include tablet{
             width: 90%;
             grid-template-columns: repeat(4, 1fr);
         }
         @include mobile{
-            width: 90%;
+            width: 100%;
             grid-template-columns: repeat(4, 2fr);
         }
         @include small{
             grid-template-columns: repeat(3, 1fr);
+        }
+        @media (max-width: 450px){
+            grid-template-columns: repeat(2, 1fr);
         }
         .skills__item{
             height: 200px;

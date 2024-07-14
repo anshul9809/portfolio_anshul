@@ -2,6 +2,7 @@ import { useRef } from "react";
 import styles from "./project.module.scss";
 import { motion, useInView } from "framer-motion";
 import {Link} from "react-router-dom";
+import { useSelector } from "react-redux";
 
 const variants = {
   initial: {
@@ -21,6 +22,7 @@ const variants = {
 };
 
 const Projects = () => {
+  const {project} = useSelector(state=>state.project);
   const ref = useRef();
 
   const isInView = useInView(ref);
@@ -39,19 +41,46 @@ const Projects = () => {
             animate={isInView ? "animate" : "initial"}
             viewport={{ once: true }}
             >
-            <div className={styles.projects__item}>
-                <Link to="/view-projects/1">
-                    <img
-                        className={styles.projects__image}
-                        src="./ME2.jpg"
-                        alt="project1"
-                    />
-                    <h2 className={styles.projects__title}>Project 1</h2>
-                    <p className={styles.projects__description}>Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                    </p>
-                    
-                </Link>
-            </div>
+
+              {project && project.map((element, index)=>{
+                return (
+                  <div className={styles.projects__item} key={index}>
+                    <Link to={`/view-projects/${element._id}`} className={styles.project__item__thumbnail}>
+                        <div className={styles.thumbnail}>
+                          <img
+                              className={styles.projects__image}
+                              src={element.projectBanner.url}
+                              alt={element.title}
+                              loading="lazy"
+                          />
+                        </div>
+                      </Link>
+                        <div className={styles.description}>
+                          <h2 className={styles.projects__title}>{element.title.substring(0,13)}</h2>
+                          <p className={styles.projects__links}>
+                              <a
+                                  href={element.gitRepoLink}
+                                  target="_blank"
+                                  rel="noreferrer"
+                              >
+                                <img src="./github.png" alt="" loading="lazy"/>
+                              </a>
+                              
+                              {element.deployed=== "Yes"? <a
+                                  href={element.projectLink}
+                                  target="_blank"
+                                  rel="noreferrer"
+                                  >
+                                  <img src="./live.png" alt="" loading="lazy"/>
+                                </a>:""
+                              }
+                          </p>
+                        </div>
+                        
+                </div>
+                )
+              })}
+            
             
         </motion.div>
     </div>

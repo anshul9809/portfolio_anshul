@@ -2,20 +2,22 @@ import styles from "./contact.module.scss";
 import axios from "axios";
 import {useEffect, useState} from "react";
 import {toast} from "react-toastify";
+import {useSelector} from "react-redux"
 
 
 const Contact = () => {
-    const [user, setUser] = useState("");
     const [senderName, setSenderName] = useState("");
     const [email, setEmail] = useState("");
     const [subject, setSubject] = useState("");
     const [message, setMessage] = useState("");
     const [loading, setLoading] = useState(false);
 
-    useEffect(()=> async ()=>{
-        const {data} = await axios.get(`${import.meta.env.VITE_BACKEND_URL}/user/portfolio`);
-        setUser(data.user);
-    }, []);
+    const {user} = useSelector(state=>state.user);
+    const phone = user.phone;
+    const userEmail = user.email;
+
+
+    
 
     const handleMessage = async (e)=>{
         e.preventDefault();
@@ -47,7 +49,6 @@ const Contact = () => {
         <div className={styles.contact}>
             <h1 className={styles.contact__heading}>Contact Me</h1>
             <div className={styles.contact__wrapper}>
-                {/* make contact information on left and form on right */}
                 <div className={styles.contact__info}>
                     <div className={styles.contact__info__wrapper}>
                         <div className={styles.contact__info__item}>
@@ -60,7 +61,7 @@ const Contact = () => {
                                 Email
                             </div>
                             <div className={styles.contact__info__item__data}>
-                                <a href={`mailto=${user?.email}` }>{user.email}</a>
+                                <a href={`mailto=${userEmail}` }>{userEmail}</a>
                             </div>
                         </div>
                         <div className={styles.contact__info__item}>
@@ -68,7 +69,7 @@ const Contact = () => {
                                 Phone
                             </div>
                             <div className={styles.contact__info__item__data}>
-                                <a href={`tel:${user.phone}`}>{user?.phone}</a>
+                                <a href={`tel:${phone}`}>{phone}</a>
                             </div>
                         </div>
                         <div className={styles.contact__info__item}>

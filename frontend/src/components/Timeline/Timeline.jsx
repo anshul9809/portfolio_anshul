@@ -2,6 +2,7 @@ import styles from "./timeline.module.scss";
 import { FaCalendarAlt, FaUserTie, FaCity, FaTasks, FaDotCircle} from "react-icons/fa";
 import {motion, useInView} from "framer-motion";
 import { useRef } from "react";
+import { useSelector } from "react-redux";
 
 const Timeline = () => {
     const variants = {
@@ -23,37 +24,41 @@ const Timeline = () => {
     const ref = useRef(null);
     
     const isInView = useInView(ref, {once:true});
+
+    const {timeline} = useSelector(state=>state.timeline);
     return (
         <div className={styles.timeline}>
             <h1 className={styles.timeline__heading}>Timeline</h1>
 
             <motion.div className={styles.timeline__wrapper} ref={ref}>
-                <motion.div className={styles.timeline__item}
-                    ref={ref}
-                    variants={variants}
-                    initial="initial"
-                    animate={isInView ? "animate" : "initial"}
-                    viewport={{ once: true }}
-                >
-                    <h1 className={styles.role}><FaUserTie className={styles.simple__icons}  /> Frontend Developer</h1>
-                    <div className={styles.name__and__date}>
-                        <h3><FaCity className={styles.simple__icons}  /> <a target="_blank" href="" rel="noopener noreferrer" >Tata Consultancy Services</a></h3>
-                        <h3><FaCalendarAlt className={styles.simple__icons}  /> 2020 - 2022</h3>    
-                    </div>
-                    <h4><FaTasks className={styles.simple__icons} /> Description</h4>
-                    <ul className={styles.description} >
-                        <li> <FaDotCircle className={styles.list__icons}/>
-                            <p>
-                            Lorem ipsum dolor sit ametLorem ipsum dolor sit ametLorem ipsum dolor sit ametLorem ipsum dolor sit ametLorem ipsum dolor sit ametLorem ipsum dolor sit ametLorem ipsum dolor sit ametLorem ipsum dolor sit ametLorem ipsum dolor sit ametLorem ipsum dolor sit ametLorem ipsum dolor sit amet.
-                            </p>
-                        </li>
-                        <li> <FaDotCircle className={styles.list__icons}/>
-                            <p>
-                            Lorem ipsum dolor sit ametLorem ipsum dolor sit ametLorem ipsum dolor sit ametLorem ipsum 
-                            </p>
-                        </li>
-                    </ul>
-                </motion.div>
+                {timeline && timeline.map((element, index)=>{
+                    const descriptionItems = element.description.split(".").filter(Boolean)
+                    return (
+                        <motion.div className={styles.timeline__item}
+                            key={index}
+                            ref={ref}
+                            variants={variants}
+                            initial="initial"
+                            animate={isInView ? "animate" : "initial"}
+                            viewport={{ once: true }}
+                        >
+                            <h1 className={styles.role}><FaUserTie className={styles.simple__icons}  />{element.title}</h1>
+                            <div className={styles.name__and__date}>
+                                <h3><FaCity className={styles.simple__icons}  /> {element.link? <a target="_blank" href={element.link} rel="noopener noreferrer" >{element.companyName}</a> : element.companyName}</h3>
+                                <h3><FaCalendarAlt className={styles.simple__icons}  /> {element.timeline.from} - {element.timeline.to}</h3>    
+                            </div>
+                            <h4><FaTasks className={styles.simple__icons} /> Description</h4>
+                            <ul className={styles.description} >
+
+                                {descriptionItems.map((sentence, i) => (
+                                    <li key={i}><FaDotCircle className={styles.list__icons} />
+                                        <p>{sentence.trim()}.</p>
+                                    </li>
+                                ))}
+                            </ul>
+                        </motion.div>
+                    );
+                })}
             </motion.div>
         </div>
     );
