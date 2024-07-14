@@ -3,6 +3,8 @@ import styles from "./footer.module.scss";
 const Footer = ()=>{
     const {user} = useSelector(state=>state.user);
 
+    const currentYear = new Date().getFullYear();
+
     return (
         <footer className={styles.footer}>
             <div className={styles.footer__wrapper}>
@@ -15,7 +17,7 @@ const Footer = ()=>{
                     {user.twitterURL?<a href={user.twitterURL} target="_blank" rel="noreferrer" className={styles.footer__social__link}><img src="./twitter.png" alt="twitter" /></a>:null}
                     {user.facebookURL?<a href={user.facebookURL} target="_blank" rel="noreferrer" className={styles.footer__social__link}><img src="./facebook.png" alt="facebook" /></a>:null}
                 </div>
-                <p className={styles.footer__copyright}>Copyright &copy; 2022. All rights reserved.</p>
+                <p className={styles.footer__copyright}>Copyright &copy; {currentYear} . All rights reserved.</p>
                 <p className={styles.footer__madeby}>Made with ❤️ by Anshul</p>
             </div>
         </footer>

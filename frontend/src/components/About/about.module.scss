@@ -4,12 +4,9 @@
 .about{
     padding: 20px;
     &__heading{
-        font-size: 2rem;
+        font-size: 3rem;
         @include mobile {
-            font-size: 1.5rem;
-        }
-        @include small {
-            font-size: 1.2rem;
+            font-size: 2rem;
         }
         text-align: center;
     }
@@ -36,7 +33,6 @@
             align-items: center;
             justify-content: center;
             gap: 10px;
-            // contains only paras including the class name of about__text
             .about__text{
                 font-size: 1rem;
                 @include mobile{

@@ -47,7 +47,7 @@ const Timeline = () => {
                                 <h3><FaCity className={styles.simple__icons}  /> {element.link? <a target="_blank" href={element.link} rel="noopener noreferrer" >{element.companyName}</a> : element.companyName}</h3>
                                 <h3><FaCalendarAlt className={styles.simple__icons}  /> {element.timeline.from} - {element.timeline.to}</h3>    
                             </div>
-                            <h4><FaTasks className={styles.simple__icons} /> Description</h4>
+                            <h4><FaTasks className={styles.simple__icons} /> Tasks / Achievements</h4>
                             <ul className={styles.description} >
 
                                 {descriptionItems.map((sentence, i) => (

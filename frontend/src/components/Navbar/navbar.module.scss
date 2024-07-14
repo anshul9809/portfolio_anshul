@@ -30,7 +30,9 @@
             display: flex;
             justify-content: end;
             align-items: center;
-            align-self: end;
+            @include small{
+                align-self: end;
+            }
             a{
                 margin: 0px 10px;
                 filter: drop-shadow(1px 1px white);

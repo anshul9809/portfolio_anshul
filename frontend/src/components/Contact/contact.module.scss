@@ -7,9 +7,13 @@
     align-items: center;
     
     &__heading {
-      font-size: 2rem;
-      margin-bottom: 2rem;
+      font-size: 3rem;
       text-align: center;
+
+      @include mobile {
+        font-size: 2rem;
+      }
+
     }
   
     &__wrapper {
