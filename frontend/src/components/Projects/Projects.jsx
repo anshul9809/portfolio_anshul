@@ -45,7 +45,7 @@ const Projects = () => {
               {project && project.map((element, index)=>{
                 return (
                   <div className={styles.projects__item} key={index}>
-                    <Link to={`/view-projects/${element._id}`} className={styles.project__item__thumbnail}>
+                    <Link to={`/view-project/${element._id}`} className={styles.project__item__thumbnail}>
                         <div className={styles.thumbnail}>
                           <img
                               className={styles.projects__image}
