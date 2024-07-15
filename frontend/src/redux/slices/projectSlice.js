@@ -17,7 +17,6 @@ export const projectSlice = createSlice({
         loadProjectSuccess(state, action){
             state.loading = false;
             state.project = action.payload;
-            console.log("data is ", state.project);
         },
         loadProjectFailed(state, action){
             state.loading = false;
@@ -46,5 +45,4 @@ export const getProject = ()=> async (dispatch)=>{
     }
 
 }
-
 export default projectSlice.reducer

@@ -1,10 +1,11 @@
 import { createSlice } from "@reduxjs/toolkit";
+import axios from "axios";
 
 const singleProject = createSlice({
     name: "singleProject",
     initialState:{
         loading: false,
-        project:{},
+        singleProject:{},
         error: null,
     },
     reducers:{
@@ -13,7 +14,7 @@ const singleProject = createSlice({
         },
         loadSingleProjectSuccess(state, action){
             state.loading = false;
-            state.project = action.payload;
+            state.singleProject = action.payload;
         },
         loadSingleProjectFailure(state, action){
             state.loading = false;

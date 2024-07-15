@@ -2,6 +2,7 @@ import { useSelector } from "react-redux";
 import Sidebar from "../Sidebar/Sidebar";
 import styles from "./navbar.module.scss";
 import {motion} from "framer-motion";
+import { Link } from "react-router-dom";
 const Navbar = ()=>{
     const {user} = useSelector(state=>state.user);
     
@@ -16,7 +17,7 @@ const Navbar = ()=>{
                     animate={{ opacity: 1, scale: 1 }}
                     transition={{ duration: 0.5 }}
                     >
-                    <i>AK</i>
+                    <Link to="/"><i>AK</i></Link>
                 </motion.span>
                     <div className={styles.navbar__social__links}>
                         {user.phone? <a href={`tel:${user.phone}`} target="_blank" rel="noreferrer" ><img src="/phone.png" alt="phone" loading="lazy" /></a>: null}

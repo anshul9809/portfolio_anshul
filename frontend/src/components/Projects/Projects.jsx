@@ -56,7 +56,7 @@ const Projects = () => {
                         </div>
                       </Link>
                         <div className={styles.description}>
-                          <h2 className={styles.projects__title}>{element.title.substring(0,13)}</h2>
+                          <h2 className={styles.projects__title}>{element.title}</h2>
                           <p className={styles.projects__links}>
                               <a
                                   href={element.gitRepoLink}
