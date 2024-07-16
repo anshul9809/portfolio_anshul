@@ -3,9 +3,7 @@ import { useSelector } from "react-redux";
 const About = ()=>{
 
     const {user} = useSelector(state=>state.user);
-    console.log("user is ", user);
     const aboutMeList = user?.aboutMe?.split("\n").filter(Boolean);
-    console.log("about me is ", aboutMeList);
 
     return (
         <div className={styles.about}>
@@ -14,7 +12,7 @@ const About = ()=>{
                 <div className={styles.about__wrapper__left}>
                     {/* {user.aboutMe} */}
                     {Array.isArray(aboutMeList) && aboutMeList.map((item, index)=>{
-                        return <p className={styles.about__text}>
+                        return <p className={styles.about__text} key={index}>
                             {item}
                         </p>
                     })}

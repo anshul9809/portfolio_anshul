@@ -1,4 +1,24 @@
 @import "./themes.scss";
+@mixin small{
+    @media (max-width:568px) {
+        @content;
+    }
+}
+@mixin mobile {
+    @media (max-width: 738px) {
+      @content;
+    }
+}
+@mixin tablet {
+    @media (max-width: 1024px) {
+      @content;
+    }
+}
+@mixin desktop {
+    @media (max-width: 1366px) {
+      @content;
+    }
+}
 
 html{
     scroll-snap-type: y mandatory;
@@ -55,48 +75,37 @@ html{
 
     &::-webkit-scrollbar-track{
         background: linear-gradient(180deg, #8e7eaa, #b83585);
-        display: none;
+        @include mobile{
+            display: none;
+        }
     }
     
     &::-webkit-scrollbar-thumb{
-        display: none;
         background: $buttonGradient;
         border-radius: $borderRadiusHigh;
+        @include mobile{
+            display: none;
+        }
     }
     
     &::-webkit-scrollbar-thumb:hover{
-        display: none;
         background: $buttonHover;
+        @include mobile{
+            display: none;
+        }
     }
     
     &::-webkit-scrollbar-thumb:active{
         display: none;
         background: $buttonHover;
+        @include mobile{
+            display: none;
+        }
     }
-
+    
 }
 .section {
     width: 100vw;
     overflow-x: hidden;
 }
   
-@mixin small{
-    @media (max-width:568px) {
-        @content;
-    }
-}
-@mixin mobile {
-    @media (max-width: 738px) {
-      @content;
-    }
-}
-@mixin tablet {
-    @media (max-width: 1024px) {
-      @content;
-    }
-}
-@mixin desktop {
-    @media (max-width: 1366px) {
-      @content;
-    }
-}
