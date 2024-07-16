@@ -17,10 +17,11 @@ const variants = {
 const itemVariants = {
   open: {
     y: 0,
+    x: 10,
     opacity: 1,
   },
   closed: {
-    y: 50,
+    y: 20,
     opacity: 0,
   },
 };

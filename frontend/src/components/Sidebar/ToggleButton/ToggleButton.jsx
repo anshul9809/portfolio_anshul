@@ -4,7 +4,7 @@ import styles from "../sidebar.module.scss"
 const ToggleButton = ({ setOpen }) => {
   return (
     <button className={styles.toggleMenu} onClick={() => setOpen((prev) => !prev)}>
-      <svg width="23" height="23" viewBox="0 0 23 23">
+      <svg width="25" height="25" viewBox="0 0 23 23" className={styles.toggleMenu__bars}>
         <motion.path
           strokeWidth="3"
           stroke="white"

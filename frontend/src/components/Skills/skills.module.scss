@@ -19,12 +19,12 @@
         margin: auto;
         display: grid;
         grid-template-columns: repeat(6, 1fr);
-        padding: 0 20px;
         padding-top: 40px;
         text-align: center;
         @include tablet{
             width: 90%;
             grid-template-columns: repeat(4, 1fr);
+            text-align: left;
         }
         @include mobile{
             width: 100%;
@@ -40,10 +40,17 @@
             height: 200px;
             padding: $paddingMedium;
             border-radius: $borderRadiusHigh;
+            display: flex;
+            flex-direction: column;
+            text-align: center;
             img{
                 width: 60px;
                 height: 60px;
+                margin: auto;
                 filter: drop-shadow(-2px -2px white);
+            }
+            .skills__title{
+                font-size: 1.2rem;
             }
         }
     }

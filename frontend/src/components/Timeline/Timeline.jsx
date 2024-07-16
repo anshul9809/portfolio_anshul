@@ -1,5 +1,6 @@
 import styles from "./timeline.module.scss";
 import { FaCalendarAlt, FaUserTie, FaCity, FaTasks, FaDotCircle} from "react-icons/fa";
+import { FaSquareArrowUpRight} from "react-icons/fa6";
 import {motion, useInView} from "framer-motion";
 import { useRef } from "react";
 import { useSelector } from "react-redux";
@@ -42,12 +43,12 @@ const Timeline = () => {
                             animate={isInView ? "animate" : "initial"}
                             viewport={{ once: true }}
                         >
-                            <h1 className={styles.role}><FaUserTie className={styles.simple__icons}  />{element.title}</h1>
+                            <h1 className={styles.role}><FaUserTie className={styles.simple__icons}  /> &nbsp;  {element.title}</h1>
                             <div className={styles.name__and__date}>
-                                <h3><FaCity className={styles.simple__icons}  /> {element.link? <a target="_blank" href={element.link} rel="noopener noreferrer" >{element.companyName}</a> : element.companyName}</h3>
+                                <h3><FaCity className={styles.simple__icons}  /> {element.link? <a target="_blank" href={element.link} rel="noopener noreferrer" > {element.companyName} <FaSquareArrowUpRight className={styles.simple__icons} /></a> : element.companyName}</h3>
                                 <h3><FaCalendarAlt className={styles.simple__icons}  /> {element.timeline.from} - {element.timeline.to}</h3>    
                             </div>
-                            <h4><FaTasks className={styles.simple__icons} /> Tasks / Achievements</h4>
+                            <h4><FaTasks className={styles.simple__icons} /> &nbsp; Tasks / Achievements</h4>
                             <ul className={styles.description} >
 
                                 {descriptionItems.map((sentence, i) => (
