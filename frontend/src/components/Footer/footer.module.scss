@@ -17,16 +17,18 @@
     .footer__wrapper{
         display: flex;
         flex-direction: column;
-        gap: 10px;
         .footer__social__links{
             display: flex;
             justify-content: center;
             gap: 20px;
-            .footer__social__link{
-                color: $textColor;
-                img{
-                    width: 30px;
-                    height: 30px;
+            .icon{
+                width: 20px;
+                height: 20px;
+                color: $mainColor;
+                transition: all ease-in-out 0.5s;
+                filter: drop-shadow(0px 0px 2px $mainColor);
+                &:hover{
+                    fill: $mainColor;
                 }
             }
         }
