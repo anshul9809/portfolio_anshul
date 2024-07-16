@@ -19,6 +19,7 @@ app.use(
 );
 
 
+
 app.use(cookieParser());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
@@ -50,4 +51,6 @@ app.listen(port, (err)=>{
         return;
     }
     console.log(`Server is running at port ${port}`);
+    console.log("portfolio url is ", process.env.PORTFOLIO_URL);
+    console.log("Dashborard url is ", process.env.DASHBOARD_URL);
 });
