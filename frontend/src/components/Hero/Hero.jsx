@@ -49,15 +49,17 @@ const Hero = ()=>{
                             Web Developer
                         </motion.h1>
                         <motion.div variants={textVariants} className={styles.buttons}>
-                            <motion.button variants={textVariants}>Contact Me</motion.button>
+                            <motion.button variants={textVariants}><a href="#Contact">Contact Me</a></motion.button>
                             <motion.button variants={textVariants}><a href={user.resume} target="_blank" rel="noopener noreferrer" download={user.resume}>Download CV</a></motion.button>
                         </motion.div>
-                        <motion.img
-                            variants={textVariants}
-                            animate="scrollButton"
-                            src="/scroll.png"
-                            alt=""
-                        />
+                        <div className={styles.scroll__div}>
+                          <motion.img
+                              variants={textVariants}
+                              animate="scrollButton"
+                              src="/scroll.png"
+                              alt=""
+                          />
+                        </div>
                     </motion.div>
 
                     <div className={styles.image__container}>
