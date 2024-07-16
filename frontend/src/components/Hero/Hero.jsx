@@ -50,6 +50,7 @@ const Hero = ()=>{
                         </motion.h1>
                         <motion.div variants={textVariants} className={styles.buttons}>
                             <motion.button variants={textVariants}>Contact Me</motion.button>
+                            <motion.button variants={textVariants}><a href={user.resume} target="_blank" rel="noopener noreferrer" download={user.resume}>Download CV</a></motion.button>
                         </motion.div>
                         <motion.img
                             variants={textVariants}
