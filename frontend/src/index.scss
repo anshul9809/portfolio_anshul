@@ -55,18 +55,22 @@ html{
 
     &::-webkit-scrollbar-track{
         background: linear-gradient(180deg, #8e7eaa, #b83585);
+        display: none;
     }
-
+    
     &::-webkit-scrollbar-thumb{
+        display: none;
         background: $buttonGradient;
         border-radius: $borderRadiusHigh;
     }
-
+    
     &::-webkit-scrollbar-thumb:hover{
+        display: none;
         background: $buttonHover;
     }
-
+    
     &::-webkit-scrollbar-thumb:active{
+        display: none;
         background: $buttonHover;
     }
 
