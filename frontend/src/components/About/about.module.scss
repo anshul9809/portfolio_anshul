@@ -36,10 +36,10 @@
             .about__text{
                 font-size: 1rem;
                 @include mobile{
-                    font-size: 1rem;
+                    font-size: 1.2rem;
                 }
                 @include small{
-                    font-size: 0.8rem;
+                    font-size: 1rem;
                 }
             }
             @include mobile{
