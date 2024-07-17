@@ -10,9 +10,10 @@ const cloudinary = require("cloudinary");
 
 const app = express();
 
+
 app.use(
     cors({
-      origin: [process.env.PORTFOLIO_URL, process.env.DASHBOARD_URL],
+      origin: "*",  // Allow access from any origin
       methods: ["GET", "POST", "PUT", "DELETE"],
       credentials: true,
     })
