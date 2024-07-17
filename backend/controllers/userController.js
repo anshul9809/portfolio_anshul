@@ -75,7 +75,7 @@ const login = expressAsyncHandler(async (req,res)=>{
 const logout = expressAsyncHandler(async (req,res)=>{
     res
     .status(200)
-    .cookie("token", "", {
+    .cookie("portfolio_token", "", {
         httpOnly: true,
         expires: new Date(Date.now()),
     })

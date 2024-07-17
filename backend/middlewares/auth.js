@@ -4,13 +4,13 @@ const expressAsyncHandler = require("express-async-handler");
 
 module.exports.authMiddleware = expressAsyncHandler(async (req,res, next)=>{
     try {
-        const { token } = req.cookies;
-        if (!token) {
+        const { portfolio_token } = req.cookies;
+        if (!portfolio_token) {
             res.status(401);
             throw new Error("Session expired, please login again.");
         }
 
-        const decoded = jwt.verify(token, process.env.JWT_SECRET);
+        const decoded = jwt.verify(portfolio_token, process.env.JWT_SECRET);
         req.user = await User.findById(decoded.id);
 
         if (!req.user) {
@@ -20,7 +20,7 @@ module.exports.authMiddleware = expressAsyncHandler(async (req,res, next)=>{
 
         next();
     } catch (error) {
-        console.error("Authentication Middleware Error:", error.message);
+        console.log("error is ", error);
         res.status(401);
         throw new Error("Not authorized, token failed.");
     }
